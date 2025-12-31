@@ -1,4 +1,5 @@
 const Patient = require('../models/Patient');
+const Analysis = require('../models/Analysis');
 
 // @desc    Register new patient
 // @route   POST /api/patients

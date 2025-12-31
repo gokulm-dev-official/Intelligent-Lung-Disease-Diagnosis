@@ -44,12 +44,17 @@ export default function About() {
 
                 <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
                     <div className="relative group">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                        <img
-                            src={profilePhoto}
-                            alt={developerDetails.name}
-                            className="relative w-44 h-44 rounded-3xl object-cover shadow-2xl border-4 border-white grayscale-[20%] hover:grayscale-0 transition-all duration-500"
-                        />
+                        <div className="absolute -inset-2 bg-gradient-to-r from-primary to-blue-600 rounded-full blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+                        <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                            <img
+                                src={profilePhoto}
+                                alt={developerDetails.name}
+                                className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-110"
+                                onError={(e) => {
+                                    e.target.src = 'https://ui-avatars.com/api/?name=Gokul+M&background=0077b5&color=fff&size=200';
+                                }}
+                            />
+                        </div>
                     </div>
 
                     <div className="text-center md:text-left space-y-3">
