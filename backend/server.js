@@ -59,10 +59,12 @@ app.use('/api/settings', require('./routes/settings'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
+    console.error("SERVER ERROR:", err.message);
     console.error(err.stack);
     res.status(500).json({
         success: false,
-        message: err.message || 'Server Error'
+        message: `Internal Server Error: ${err.message}`,
+        details: process.env.NODE_ENV === 'production' ? 'Check backend logs for stack trace' : err.stack
     });
 });
 

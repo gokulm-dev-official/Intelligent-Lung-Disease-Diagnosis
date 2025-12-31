@@ -12,34 +12,38 @@ import Appointments from './pages/Appointments';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
 
+import ErrorBoundary from './components/common/ErrorBoundary';
+
 function App() {
     return (
-        <ThemeProvider>
-            <AdminProvider>
-                <Router>
-                    <Routes>
-                        <Route path="/" element={<Layout />}>
-                            <Route index element={<Home />} />
-                            <Route path="dashboard" element={<Dashboard />} />
-                            <Route path="analysis" element={<Analysis />} />
-                            <Route path="patients" element={<Patients />} />
-                            <Route path="appointments" element={<Appointments />} />
-                            <Route path="reports" element={<Reports />} />
-                            <Route path="settings" element={<Settings />} />
-                            <Route path="*" element={<Navigate to="/" />} />
-                        </Route>
-                    </Routes>
-                </Router>
-                <ToastContainer
-                    position="bottom-right"
-                    theme="colored"
-                    hideProgressBar={false}
-                    closeOnClick
-                    pauseOnHover
-                    draggable
-                />
-            </AdminProvider>
-        </ThemeProvider>
+        <ErrorBoundary>
+            <ThemeProvider>
+                <AdminProvider>
+                    <Router>
+                        <Routes>
+                            <Route path="/" element={<Layout />}>
+                                <Route index element={<Home />} />
+                                <Route path="dashboard" element={<Dashboard />} />
+                                <Route path="analysis" element={<Analysis />} />
+                                <Route path="patients" element={<Patients />} />
+                                <Route path="appointments" element={<Appointments />} />
+                                <Route path="reports" element={<Reports />} />
+                                <Route path="settings" element={<Settings />} />
+                                <Route path="*" element={<Navigate to="/" />} />
+                            </Route>
+                        </Routes>
+                    </Router>
+                    <ToastContainer
+                        position="bottom-right"
+                        theme="colored"
+                        hideProgressBar={false}
+                        closeOnClick
+                        pauseOnHover
+                        draggable
+                    />
+                </AdminProvider>
+            </ThemeProvider>
+        </ErrorBoundary>
     );
 }
 
