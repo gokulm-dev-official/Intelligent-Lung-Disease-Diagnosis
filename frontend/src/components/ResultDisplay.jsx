@@ -147,7 +147,7 @@ export default function ResultDisplay({ result, loading, error, imageUrl }) {
         );
     }
 
-    const { diagnosis, confidenceScores, primaryConfidence } = result;
+    const { diagnosis = 'Unknown', confidenceScores = {}, primaryConfidence = 0 } = result || {};
 
     // Determine color based on diagnosis
     let colorClass = 'text-gray-500';
@@ -161,8 +161,10 @@ export default function ResultDisplay({ result, loading, error, imageUrl }) {
         bgClass = 'bg-green-50';
     }
 
-    // Sort scores for list
-    const sortedScores = Object.entries(confidenceScores).sort(([, a], [, b]) => b - a);
+    // Sort scores for list (with safety check)
+    const sortedScores = confidenceScores
+        ? Object.entries(confidenceScores).sort(([, a], [, b]) => b - a)
+        : [];
 
     return (
         <>

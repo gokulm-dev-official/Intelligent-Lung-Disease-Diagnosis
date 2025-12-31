@@ -5,22 +5,29 @@ const Patient = require('../models/Patient');
 // @access  Public
 exports.registerPatient = async (req, res) => {
     try {
-        // Auto-generate Patient ID: PID-YYYYMMDD-XXXX
+        console.log("Registering patient with data:", req.body);
+
+        // Ensure required fields are present
+        const { fullName, age, gender, phoneNumber } = req.body;
+        if (!fullName || !age || !gender || !phoneNumber) {
+            return res.status(400).json({
+                success: false,
+                message: "Please provide all required fields: Name, Age, Gender, and Phone Number"
+            });
+        }
+
+        // Generate a more robust unique ID
         const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-        const count = await Patient.countDocuments({
-            createdAt: {
-                $gte: new Date(new Date().setHours(0, 0, 0, 0)),
-                $lt: new Date(new Date().setHours(23, 59, 59, 999))
-            }
-        });
-        const randomStr = Math.floor(1000 + Math.random() * 9000); // Fallback random
-        const uniqueSuffix = (count + 1).toString().padStart(4, '0');
-        const patientId = `PID-${date}-${uniqueSuffix}`;
+        const randomStr = Math.floor(1000 + Math.random() * 9000);
+        const timestamp = Date.now().toString().slice(-4);
+        const patientId = `PID-${date}-${randomStr}-${timestamp}`;
 
         const patient = await Patient.create({
             ...req.body,
             patientId
         });
+
+        console.log("Patient created successfully:", patient.patientId);
 
         res.status(201).json({
             success: true,
