@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { DiseaseDistributionChart, ScansHistoryChart } from '../components/ChartComponents';
 import { UserGroupIcon, BoltIcon } from '@heroicons/react/24/outline'; // Note: HeroIcons v2
 import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
     const [stats, setStats] = useState(null);
     const [chartData, setChartData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -43,16 +45,18 @@ export default function Dashboard() {
         fetchData();
     }, []);
 
-    if (loading) return <div className="p-8">Loading stats...</div>;
+    if (loading) return <div className="p-8 text-center animate-pulse">Retrieving secure biometric stats...</div>;
 
     return (
         <div className="space-y-8">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900">Overview</h1>
-                    <p className="text-gray-500">Welcome back, Dr. Wilson</p>
+                    <h1 className="text-3xl font-bold text-gray-900">Health Overview</h1>
+                    <p className="text-gray-500">System active, hello GOKUL M</p>
                 </div>
-                <button className="btn-primary">Generate Report</button>
+                <button onClick={() => navigate('/reports')} className="btn-primary shadow-lg shadow-primary/20">
+                    Access Reports Registry
+                </button>
             </div>
 
             {/* Stats Cards */}

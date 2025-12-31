@@ -11,6 +11,7 @@ import Patients from './pages/Patients';
 import Appointments from './pages/Appointments';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
+import About from './pages/About';
 
 import ErrorBoundary from './components/common/ErrorBoundary';
 
@@ -29,6 +30,7 @@ function App() {
                                 <Route path="appointments" element={<Appointments />} />
                                 <Route path="reports" element={<Reports />} />
                                 <Route path="settings" element={<Settings />} />
+                                <Route path="about" element={<About />} />
                                 <Route path="*" element={<Navigate to="/" />} />
                             </Route>
                         </Routes>

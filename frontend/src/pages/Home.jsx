@@ -1,7 +1,39 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRightIcon, ShieldCheckIcon, UserGroupIcon, BoltIcon } from '@heroicons/react/24/outline';
+import api from '../services/api';
 
 export default function Home() {
+    const [stats, setStats] = useState({
+        totalPatients: '...',
+        accuracyRate: '98.5%',
+        totalScans: '...'
+    });
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                const { data } = await api.get('/dashboard/stats');
+                if (data.success) {
+                    setStats(prev => ({
+                        ...prev,
+                        totalPatients: data.data.totalPatients.toLocaleString(),
+                        totalScans: data.data.totalScans > 1000 ? (data.data.totalScans / 1000).toFixed(1) + 'k' : data.data.totalScans.toLocaleString()
+                    }));
+                }
+            } catch (error) {
+                console.error("Failed to fetch home stats", error);
+            }
+        };
+        fetchStats();
+    }, []);
+
+    const statCards = [
+        { label: 'Total Patients Registered', value: stats.totalPatients, icon: UserGroupIcon, color: 'text-blue-600', bg: 'bg-blue-50' },
+        { label: 'AI Diagnostic Accuracy', value: stats.accuracyRate, icon: ShieldCheckIcon, color: 'text-green-600', bg: 'bg-green-50' },
+        { label: 'Scans Completed to Date', value: stats.totalScans, icon: BoltIcon, color: 'text-purple-600', bg: 'bg-purple-50' },
+    ];
+
     return (
         <div className="max-w-7xl mx-auto space-y-12">
             {/* Hero Section */}
@@ -34,11 +66,7 @@ export default function Home() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                    { label: 'Total Patients', value: '2,543', icon: UserGroupIcon, color: 'text-blue-600', bg: 'bg-blue-50' },
-                    { label: 'Accuracy Rate', value: '98.5%', icon: ShieldCheckIcon, color: 'text-green-600', bg: 'bg-green-50' },
-                    { label: 'Scans Completed', value: '12.4k', icon: BoltIcon, color: 'text-purple-600', bg: 'bg-purple-50' },
-                ].map((stat, idx) => (
+                {statCards.map((stat, idx) => (
                     <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
                         <div className={`w-14 h-14 rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center`}>
                             <stat.icon className="w-7 h-7" />

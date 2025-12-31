@@ -9,7 +9,8 @@ import {
     CalendarIcon,
     Cog6ToothIcon,
     BeakerIcon,
-    ArrowRightOnRectangleIcon
+    ArrowRightOnRectangleIcon,
+    InformationCircleIcon
 } from '@heroicons/react/24/outline';
 import { ShieldCheckIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
@@ -21,6 +22,7 @@ const navigation = [
     { name: 'Appointments', href: '/appointments', icon: CalendarIcon },
     { name: 'Reports', href: '/reports', icon: DocumentChartBarIcon },
     { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
+    { name: 'About', href: '/about', icon: InformationCircleIcon },
 ];
 
 export default function Sidebar() {
