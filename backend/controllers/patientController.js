@@ -132,11 +132,17 @@ exports.updatePatient = async (req, res) => {
 // @access  Public
 exports.deletePatient = async (req, res) => {
     try {
-        const patient = await Patient.findByIdAndDelete(req.params.id);
+        const patientId = req.params.id;
+
+        // Remove all associated analysis reports first
+        console.log(`Cleaning up reports for patient: ${patientId}`);
+        await Analysis.deleteMany({ patientId: patientId });
+
+        const patient = await Patient.findByIdAndDelete(patientId);
         if (!patient) {
             return res.status(404).json({ success: false, message: 'Patient not found' });
         }
-        res.status(200).json({ success: true, data: {} });
+        res.status(200).json({ success: true, message: 'Patient and associated reports deleted successfully' });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
