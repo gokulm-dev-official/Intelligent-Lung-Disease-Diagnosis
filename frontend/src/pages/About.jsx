@@ -1,9 +1,10 @@
 import {
+    UserIcon,
     EnvelopeIcon,
     PhoneIcon,
     AcademicCapIcon,
     BoltIcon,
-    GlobeAltIcon,
+    LinkIcon
 } from '@heroicons/react/24/outline';
 import profilePhoto from '../assets/profile.jpg';
 
@@ -27,103 +28,130 @@ const GmailIcon = () => (
 
 const developerDetails = {
     name: "GOKUL M",
-    role: "Full Stack Engineer & Researcher",
+    role: "Full Stack Engineer & AI Researcher",
     email: "gokulxmg26@gmail.com",
     phone: "+91 6382024508",
     linkedin: "https://www.linkedin.com/in/gokul-m-7b881629b/",
     github: "https://github.com/gokulm-dev-official",
     skills: ["React", "Express.js", "MongoDB", "Node.js", "Python", "TensorFlow", "Tailwind CSS", "Vite"],
-    bio: "I create simple and clean websites using modern technologies. I enjoy learning and improving my coding skills to build impactful AI solutions."
+    bio: "Passionate developer specialized in building AI-integrated medical healthcare systems and high-performance web applications."
 };
 
 export default function About() {
     return (
-        <div className="min-h-[80vh] flex items-center justify-center p-4">
-            <div className="max-w-6xl w-full animate-fade-in-up">
-                {/* Main Identity Card */}
-                <div className="bg-gray-100/50 backdrop-blur-sm rounded-[3rem] p-8 md:p-16 border border-gray-200/50 shadow-2xl shadow-gray-200/20 flex flex-col md:flex-row items-center gap-12 md:gap-24 relative overflow-hidden">
-                    {/* Background Accents */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl opacity-50"></div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/5 rounded-full -ml-32 -mb-32 blur-3xl opacity-50"></div>
+        <div className="max-w-6xl mx-auto space-y-8 animate-fade-in-up p-4">
+            {/* Header Identity Section */}
+            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-blue-500/5 border border-gray-100 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
 
-                    {/* Left: The Photo (Portrait Aspect) */}
-                    <div className="w-full md:w-[400px] flex-shrink-0 animate-float">
-                        <div className="relative group">
-                            <div className="absolute -inset-1 bg-white rounded-[2.5rem] shadow-xl"></div>
-                            <div className="relative aspect-[3/4] rounded-[2.2rem] overflow-hidden border-8 border-white shadow-inner">
-                                <img
-                                    src={profilePhoto}
-                                    alt={developerDetails.name}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    onError={(e) => {
-                                        e.target.src = 'https://ui-avatars.com/api/?name=Gokul+M&background=0077b5&color=fff&size=500';
-                                    }}
-                                />
-                            </div>
-                        </div>
+                <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16 relative z-10">
+                    <div className="relative group shrink-0">
+                        <div className="absolute -inset-1.5 bg-gradient-to-r from-primary to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                        <img
+                            src={profilePhoto}
+                            alt={developerDetails.name}
+                            className="relative w-48 h-64 md:w-56 md:h-72 rounded-3xl object-cover shadow-2xl border-4 border-white transition-all duration-500"
+                            onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=Gokul+M&background=0077b5&color=fff&size=500'; }}
+                        />
                     </div>
 
-                    {/* Right: Content Section */}
-                    <div className="flex-1 space-y-8 text-center md:text-left relative z-10">
-                        <section className="space-y-4">
-                            <h1 className="text-6xl md:text-7xl font-black text-primary tracking-tighter uppercase leading-tight">
-                                {developerDetails.name}
-                            </h1>
-                            <div className="flex flex-wrap justify-center md:justify-start gap-x-3 text-sm font-bold text-gray-400 uppercase tracking-widest">
-                                {developerDetails.skills.map((skill, i) => (
-                                    <span key={skill} className="flex items-center gap-3">
-                                        {skill}
-                                        {i < developerDetails.skills.length - 1 && <span className="opacity-30">|</span>}
-                                    </span>
-                                ))}
-                            </div>
-                        </section>
+                    <div className="text-center md:text-left space-y-4">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-primary text-xs font-bold uppercase tracking-widest">
+                            Lead Architect
+                        </div>
+                        <h1 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tight leading-tight">{developerDetails.name}</h1>
+                        <p className="text-xl text-gray-500 font-medium">{developerDetails.role}</p>
 
-                        <section className="max-w-xl">
-                            <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed italic">
-                                "{developerDetails.bio}"
-                            </p>
-                        </section>
+                        <p className="max-w-xl text-gray-600 leading-relaxed pt-2">
+                            I create clean, modern websites using high-performance technologies and enjoy building impactful AI healthcare solutions.
+                        </p>
 
-                        {/* Social Registry (Google Minimalist Style) */}
-                        <section className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                            <a href={developerDetails.github} target="_blank" rel="noreferrer"
-                                className="flex items-center gap-3 px-6 py-3 bg-white border border-gray-200 rounded-2xl text-gray-900 font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                        <div className="flex flex-wrap justify-center md:justify-start gap-3 pt-6">
+                            <a href={developerDetails.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white rounded-xl hover:bg-black transition-all shadow-lg shadow-gray-200">
                                 <GitHubIcon />
-                                <span>GitHub</span>
+                                <span className="text-sm font-bold">GitHub</span>
                             </a>
-                            <a href={developerDetails.linkedin} target="_blank" rel="noreferrer"
-                                className="flex items-center gap-3 px-6 py-3 bg-white border border-gray-200 rounded-2xl text-[#0077b5] font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                            <a href={developerDetails.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-[#0077b5] text-white rounded-xl hover:opacity-90 transition-all shadow-lg shadow-blue-100">
                                 <LinkedInIcon />
-                                <span>LinkedIn</span>
+                                <span className="text-sm font-bold">LinkedIn</span>
                             </a>
-                            <a href={`mailto:${developerDetails.email}`}
-                                className="flex items-center gap-3 px-6 py-3 bg-white border border-gray-200 rounded-2xl text-[#EA4335] font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                            <a href={`mailto:${developerDetails.email}`} className="flex items-center gap-2 px-5 py-2.5 bg-[#EA4335] text-white rounded-xl hover:opacity-90 transition-all shadow-lg shadow-red-100">
                                 <GmailIcon />
-                                <span>Gmail</span>
+                                <span className="text-sm font-bold">Gmail</span>
                             </a>
-                        </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        {/* Quick Contact Line */}
-                        <div className="pt-8 border-t border-gray-200 inline-flex flex-wrap gap-8 text-xs font-black text-gray-400 uppercase tracking-[0.2em] justify-center md:justify-start">
-                            <div className="flex items-center gap-2">
-                                <PhoneIcon className="w-4 h-4" />
-                                {developerDetails.phone}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Contact Registration */}
+                <div className="card space-y-6 !rounded-[2rem]">
+                    <h3 className="text-xl font-bold text-gray-900 flex items-center gap-3">
+                        <UserIcon className="w-6 h-6 text-primary" />
+                        Communication Registry
+                    </h3>
+
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:bg-white hover:shadow-md transition-all">
+                            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                                <GmailIcon className="text-[#EA4335]" />
                             </div>
-                            <div className="flex items-center gap-2">
-                                <GlobeAltIcon className="w-4 h-4" />
-                                TAMIL NADU, INDIA
+                            <div>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Primary Gmail</p>
+                                <p className="text-sm font-bold text-gray-900">{developerDetails.email}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:bg-white hover:shadow-md transition-all">
+                            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                                <PhoneIcon className="w-5 h-5 text-gray-400" />
+                            </div>
+                            <div>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Mobile Terminal</p>
+                                <p className="text-sm font-bold text-gray-900">{developerDetails.phone}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:bg-white hover:shadow-md transition-all">
+                            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                                <AcademicCapIcon className="w-5 h-5 text-gray-400" />
+                            </div>
+                            <div>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Project Focus</p>
+                                <p className="text-sm font-bold text-gray-900 italic">Advanced LungAI Diagnostic System</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Footer Signature */}
-                <div className="text-center mt-12 opacity-40">
-                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-500">
-                        Designed & Engineered by Gokul M &copy; 2025
+                {/* Core Competencies Card */}
+                <div className="card space-y-6 bg-[#0f172a] text-white border-none shadow-2xl !rounded-[2rem]">
+                    <h3 className="text-xl font-bold flex items-center gap-3">
+                        <BoltIcon className="w-6 h-6 text-primary" />
+                        System Bio & Skills
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed italic">
+                        "{developerDetails.bio}"
                     </p>
+
+                    <div className="pt-6">
+                        <p className="text-[10px] font-black uppercase tracking-widest text-[#38bdf8] mb-4">Core Competencies</p>
+                        <div className="flex flex-wrap gap-2">
+                            {developerDetails.skills.map(skill => (
+                                <span key={skill} className="px-3 py-1 bg-[#1e293b] text-[#38bdf8] rounded-lg text-xs font-bold border border-[#334155] hover:bg-[#334155] transition-colors">
+                                    {skill}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div className="text-center py-12">
+                <p className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400">
+                    Proprietary Design by Gokul M &copy; 2025
+                </p>
             </div>
         </div>
     );
