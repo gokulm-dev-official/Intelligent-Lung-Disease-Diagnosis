@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        const uri = process.env.MONGO_URI;
+        const uri = (process.env.MONGO_URI || '').trim();
         if (!uri && (process.env.VERCEL || process.env.NODE_ENV === 'production')) {
             throw new Error('MONGO_URI is not defined in environment variables');
         }

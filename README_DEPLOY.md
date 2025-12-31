@@ -18,9 +18,9 @@ The AI prediction part runs on a Python service. Vercel does not support long-ru
 
 ## 4. Troubleshooting Analysis
 If the analysis still fails:
-- **Render RAM**: TensorFlow is heavy. If the Render logs say "Out of Memory", it means the free tier isn't enough. The system will try to "Simulate" the AI result if the service is down.
+- **Check Health**: Visit `your-site.vercel.app/api/health`. It should show `{"status": "ok", "db": true}`. If `db` is false, your connection string or whitelist is wrong.
 - **Vercel Timeout**: Vercel free tier has a 10-second timeout. If the AI takes longer, it will fail.
-- **Check Logs**: Go to Vercel Dashboard -> Logs to see exactly what "Backend Error" is being reported.
+- **Check Logs**: Go to Vercel Dashboard -> Logs. Look for `DB Connection Middleware Error`.
 
 ## Next Steps
 - Link your GitHub repo to Vercel now!
