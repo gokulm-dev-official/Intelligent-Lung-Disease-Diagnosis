@@ -23,7 +23,8 @@ const predictImage = async (imagePath) => {
         const response = await axios.post(`${PYTHON_SERVICE_URL}/predict`, form, {
             headers: {
                 ...form.getHeaders()
-            }
+            },
+            timeout: 60000 // 60 seconds for Render cold start
         });
 
         if (response.data.success) {

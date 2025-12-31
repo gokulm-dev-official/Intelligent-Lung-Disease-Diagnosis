@@ -43,6 +43,10 @@ if (isVercel) {
 }
 app.use('/reports', express.static(path.join(__dirname, 'reports')));
 
+// Health check and root
+app.get('/', (req, res) => res.send('LungAI API is Running...'));
+app.get('/api/health', (req, res) => res.json({ status: 'ok', db: isConnected }));
+
 // Routes
 app.use('/api/patients', require('./routes/patients'));
 app.use('/api/analysis', require('./routes/analysis'));
