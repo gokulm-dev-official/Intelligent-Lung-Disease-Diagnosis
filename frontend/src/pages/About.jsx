@@ -1,12 +1,23 @@
 import {
     UserIcon,
-    LinkIcon,
     EnvelopeIcon,
     PhoneIcon,
-    CodeBracketIcon,
     AcademicCapIcon,
     BoltIcon
 } from '@heroicons/react/24/outline';
+import profilePhoto from '../assets/profile.png';
+
+const LinkedInIcon = () => (
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+    </svg>
+);
+
+const GitHubIcon = () => (
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+    </svg>
+);
 
 const developerDetails = {
     name: "GOKUL M",
@@ -25,26 +36,33 @@ export default function About() {
             <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-blue-500/5 border border-gray-100 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
 
-                <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
-                    <div className="w-40 h-40 bg-gradient-to-br from-primary to-blue-600 rounded-3xl flex items-center justify-center text-white text-6xl font-black shadow-2xl shadow-primary/30">
-                        {developerDetails.name.charAt(0)}
+                <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
+                    <div className="relative group">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                        <img
+                            src={profilePhoto}
+                            alt={developerDetails.name}
+                            className="relative w-44 h-44 rounded-3xl object-cover shadow-2xl border-4 border-white grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                        />
                     </div>
 
-                    <div className="text-center md:text-left space-y-2">
+                    <div className="text-center md:text-left space-y-3">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-primary text-xs font-bold uppercase tracking-widest">
                             Lead Architect
                         </div>
-                        <h1 className="text-4xl font-black text-gray-900 tracking-tight">{developerDetails.name}</h1>
-                        <p className="text-lg text-gray-500 font-medium">{developerDetails.role}</p>
+                        <h1 className="text-5xl font-black text-gray-900 tracking-tight">{developerDetails.name}</h1>
+                        <p className="text-xl text-gray-500 font-medium">{developerDetails.role}</p>
 
-                        <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                            <a href={developerDetails.github} target="_blank" rel="noreferrer" className="p-3 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all text-gray-900 shadow-sm border border-gray-100">
-                                <CodeBracketIcon className="w-5 h-5" />
+                        <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-6">
+                            <a href={developerDetails.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl hover:bg-black transition-all shadow-lg shadow-gray-200">
+                                <GitHubIcon />
+                                <span className="text-sm font-bold">GitHub</span>
                             </a>
-                            <a href={developerDetails.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all text-blue-600 shadow-sm border border-gray-100">
-                                <LinkIcon className="w-5 h-5" />
+                            <a href={developerDetails.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-[#0077b5] text-white rounded-xl hover:opacity-90 transition-all shadow-lg shadow-blue-100">
+                                <LinkedInIcon />
+                                <span className="text-sm font-bold">LinkedIn</span>
                             </a>
-                            <a href={`mailto:${developerDetails.email}`} className="p-3 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all text-red-500 shadow-sm border border-gray-100">
+                            <a href={`mailto:${developerDetails.email} `} className="p-3 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all text-red-500 shadow-sm border border-gray-100">
                                 <EnvelopeIcon className="w-5 h-5" />
                             </a>
                         </div>
