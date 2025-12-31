@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
 
-const PYTHON_SERVICE_URL = 'http://localhost:5001';
+const PYTHON_SERVICE_URL = process.env.PYTHON_SERVICE_URL || 'http://localhost:5001';
 
 const loadModel = async () => {
     console.log("Model loading is managed by Python Service.");
