@@ -84,7 +84,7 @@ export default function ResultDisplay({ result, loading, error, imageUrl }) {
                         date: new Date().toLocaleString(),
                         diagnosis: result.diagnosis,
                         confidence: result.primaryConfidence,
-                        image: `http://localhost:5002${result.imageUrl}`,
+                        image: result.imageUrl,
                         confidenceScores: result.confidenceScores
                     }
                 }

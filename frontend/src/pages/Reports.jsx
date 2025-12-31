@@ -119,7 +119,7 @@ export default function Reports() {
                                                             date: format(new Date(report.createdAt), 'dd MMM yyyy, HH:mm'),
                                                             diagnosis: report.diagnosis,
                                                             confidence: report.primaryConfidence,
-                                                            image: report.imageUrl.startsWith('http') ? report.imageUrl : `http://localhost:5002${report.imageUrl}`,
+                                                            image: report.imageUrl.startsWith('http') ? report.imageUrl : report.imageUrl,
                                                             confidenceScores: report.confidenceScores
                                                         }
                                                     })}
