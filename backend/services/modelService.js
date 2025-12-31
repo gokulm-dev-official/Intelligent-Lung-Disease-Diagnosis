@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
 
-const PYTHON_SERVICE_URL = process.env.PYTHON_SERVICE_URL || 'http://localhost:5001';
+const PYTHON_SERVICE_URL = (process.env.PYTHON_SERVICE_URL || 'http://localhost:5001').replace(/\/$/, '');
 
 const loadModel = async () => {
     console.log("Model loading is managed by Python Service.");
@@ -10,10 +10,15 @@ const loadModel = async () => {
 
 const predictImage = async (imagePath) => {
     try {
+        if (!fs.existsSync(imagePath)) {
+            throw new Error(`Image file not found at path: ${imagePath}`);
+        }
+
         const form = new FormData();
         form.append('image', fs.createReadStream(imagePath));
 
-        console.log(`Sending image to Python Service: ${PYTHON_SERVICE_URL}/predict`);
+        const targetUrl = `${PYTHON_SERVICE_URL}/predict`;
+        console.log(`Sending image to Python Service: ${targetUrl}`);
 
         const response = await axios.post(`${PYTHON_SERVICE_URL}/predict`, form, {
             headers: {

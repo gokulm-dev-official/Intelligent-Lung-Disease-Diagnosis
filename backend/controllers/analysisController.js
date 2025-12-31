@@ -49,7 +49,11 @@ exports.analyzeImage = async (req, res) => {
                 console.error("Failed to delete file:", unlinkError);
             }
         }
-        res.status(500).json({ success: false, message: error.message });
+        res.status(500).json({
+            success: false,
+            message: `Backend Error: ${error.message}`,
+            details: error.stack
+        });
     }
 };
 

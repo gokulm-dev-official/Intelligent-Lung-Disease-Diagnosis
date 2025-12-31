@@ -13,20 +13,13 @@ The AI prediction part runs on a Python service. Vercel does not support long-ru
 1. Deploy the `python_service` folder to [Render](https://render.com) or [Railway](https://railway.app).
 2. Note the live URL of your Python service.
 
-## 3. Vercel Deployment
-1. Go to [Vercel](https://vercel.com) and click **"New Project"**.
-2. Import your GitHub repository: `Intelligent-Lung-Disease-Diagnosis`.
-3. Vercel will automatically detect the `vercel.json` configuration.
-4. **Environment Variables:** You MUST add these in the Vercel Dashboard:
-   - `MONGO_URI`: Your MongoDB Atlas connection string.
-   - `NODE_ENV`: `production`
-   - `VITE_API_URL`: (Leave blank if using the same domain, or set to your Vercel URL + `/api`).
-   - `PYTHON_SERVICE_URL`: URL of your deployed Python service (from step 2).
+## 3. **PYTHON_SERVICE_URL**: The URL of your Render service (e.g., `https://intelligent-lung-disease-diagnosis.onrender.com`). **Do not add a trailing slash.**
 
-## 4. Limitations on Vercel
-- **File Storage:** File uploads (X-rays) and PDF reports are stored in local folders (`/uploads`, `/reports`). Vercel has a read-only file system. 
-- **Recommendation:** For a production app, use **Cloudinary** for image storage and **AWS S3** for PDFs.
-- **Fallback:** Currently, the system will fallback to a deterministic "Dummy AI" result if the Python service is not reachable.
+## 4. Troubleshooting Analysis
+If the analysis still fails:
+- **Render RAM**: TensorFlow is heavy. If the Render logs say "Out of Memory", it means the free tier isn't enough. The system will try to "Simulate" the AI result if the service is down.
+- **Vercel Timeout**: Vercel free tier has a 10-second timeout. If the AI takes longer, it will fail.
+- **Check Logs**: Go to Vercel Dashboard -> Logs to see exactly what "Backend Error" is being reported.
 
 ## Next Steps
 - Link your GitHub repo to Vercel now!
