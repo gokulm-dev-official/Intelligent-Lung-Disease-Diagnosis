@@ -17,7 +17,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static folder for uploads
+const isVercel = process.env.VERCEL || process.env.NODE_ENV === 'production';
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+if (isVercel) {
+    app.use('/uploads', express.static('/tmp'));
+}
 app.use('/reports', express.static(path.join(__dirname, 'reports')));
 
 // Routes
