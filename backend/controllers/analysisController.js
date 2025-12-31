@@ -162,7 +162,10 @@ exports.getAnalyses = async (req, res) => {
         let query = {};
         if (patientId) query.patientId = patientId;
 
-        const analyses = await Analysis.find(query).populate('patientId', 'fullName patientId').sort({ createdAt: -1 });
+        let analyses = await Analysis.find(query).populate('patientId', 'fullName patientId').sort({ createdAt: -1 });
+
+        // Filter out "anonymized" (orphans) where patient no longer exists
+        analyses = analyses.filter(a => a.patientId !== null);
 
         res.status(200).json({
             success: true,
