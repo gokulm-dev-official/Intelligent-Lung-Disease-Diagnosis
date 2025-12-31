@@ -5,7 +5,7 @@ import {
     AcademicCapIcon,
     BoltIcon
 } from '@heroicons/react/24/outline';
-import profilePhoto from '../assets/profile.png';
+import profilePhoto from '../assets/profile.jpg';
 
 const LinkedInIcon = () => (
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -19,14 +19,20 @@ const GitHubIcon = () => (
     </svg>
 );
 
+const GmailIcon = () => (
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M24 4.5v15c0 .85-.65 1.5-1.5 1.5H21V7.39l-9 6.58-9-6.58V21H1.5C.65 21 0 20.35 0 19.5v-15c0-1.17 1.1-1.9 2.1-1.4L12 9.4l9.9-6.3c1-.5 2.1.23 2.1 1.4z" />
+    </svg>
+);
+
 const developerDetails = {
     name: "GOKUL M",
     role: "Full Stack MERN Developer",
     email: "gokulxmg26@gmail.com",
-    phone: "+91 6382024508", // Added phone as per user request (placeholders if not provided, but they gave email/socials)
+    phone: "+91 6382024508",
     linkedin: "https://www.linkedin.com/in/gokul-m-7b881629b/",
     github: "https://github.com/gokulm-dev-official",
-    skills: ["React", "Express.js", "MongoDB", "Node.js", "Python", "TensorFlow"],
+    skills: ["React", "Express.js", "MongoDB", "Node.js", "Python", "TensorFlow", "Tailwind CSS", "Vite", "MERN Stack"],
     bio: "Passionate developer specialized in building AI-integrated medical healthcare systems and high-performance web applications."
 };
 
@@ -62,8 +68,9 @@ export default function About() {
                                 <LinkedInIcon />
                                 <span className="text-sm font-bold">LinkedIn</span>
                             </a>
-                            <a href={`mailto:${developerDetails.email} `} className="p-3 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all text-red-500 shadow-sm border border-gray-100">
-                                <EnvelopeIcon className="w-5 h-5" />
+                            <a href={`mailto:${developerDetails.email}`} className="flex items-center gap-2 px-4 py-2 bg-[#EA4335] text-white rounded-xl hover:opacity-90 transition-all shadow-lg shadow-red-100">
+                                <GmailIcon />
+                                <span className="text-sm font-bold">Email</span>
                             </a>
                         </div>
                     </div>
@@ -79,12 +86,12 @@ export default function About() {
                     </h3>
 
                     <div className="space-y-4">
-                        <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                        <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 italic transition-all hover:bg-white hover:shadow-md">
                             <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm">
-                                <EnvelopeIcon className="w-5 h-5 text-gray-400" />
+                                <GmailIcon className="text-[#EA4335]" />
                             </div>
                             <div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Primary Email</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Primary Gmail</p>
                                 <p className="text-sm font-bold text-gray-900">{developerDetails.email}</p>
                             </div>
                         </div>
@@ -112,20 +119,20 @@ export default function About() {
                 </div>
 
                 {/* Bio / Mission */}
-                <div className="card space-y-6 bg-gray-900 text-white border-none shadow-2xl">
+                <div className="card space-y-6 bg-[#0f172a] text-white border-none shadow-2xl">
                     <h3 className="text-xl font-bold flex items-center gap-3">
-                        <BoltIcon className="w-6 h-6 text-primary" />
+                        <BoltIcon className="w-6 h-6 text-primary outline-none" />
                         System Bio
                     </h3>
-                    <p className="text-gray-400 leading-relaxed italic">
+                    <p className="text-gray-300 leading-relaxed italic">
                         "{developerDetails.bio}"
                     </p>
 
                     <div className="pt-6">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-4">Core Competencies</p>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-[#38bdf8] mb-4">Core Competencies</p>
                         <div className="flex flex-wrap gap-2">
                             {developerDetails.skills.map(skill => (
-                                <span key={skill} className="px-3 py-1 bg-white/10 rounded-lg text-xs font-bold border border-white/5">
+                                <span key={skill} className="px-3 py-1 bg-[#1e293b] text-[#38bdf8] rounded-lg text-xs font-bold border border-[#334155] hover:bg-[#334155] transition-colors">
                                     {skill}
                                 </span>
                             ))}
