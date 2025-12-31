@@ -6,7 +6,6 @@ import {
     BoltIcon,
     LinkIcon
 } from '@heroicons/react/24/outline';
-import profilePhoto from '../assets/profile.jpg';
 
 const LinkedInIcon = () => (
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -40,46 +39,41 @@ const developerDetails = {
 export default function About() {
     return (
         <div className="max-w-6xl mx-auto space-y-8 animate-fade-in-up p-4">
-            {/* Header Identity Section */}
-            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-blue-500/5 border border-gray-100 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+            {/* Centered Header Identity Section */}
+            <div className="bg-white rounded-[3rem] p-12 md:p-20 shadow-xl shadow-blue-500/5 border border-gray-100 relative overflow-hidden text-center">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl opacity-50"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/5 rounded-full -ml-32 -mb-32 blur-3xl opacity-50"></div>
 
-                <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16 relative z-10">
-                    <div className="relative group shrink-0">
-                        <div className="absolute -inset-1.5 bg-gradient-to-r from-primary to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                        <img
-                            src={profilePhoto}
-                            alt={developerDetails.name}
-                            className="relative w-48 h-64 md:w-56 md:h-72 rounded-3xl object-cover shadow-2xl border-4 border-white transition-all duration-500"
-                            onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=Gokul+M&background=0077b5&color=fff&size=500'; }}
-                        />
+                <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-primary text-xs font-bold uppercase tracking-widest">
+                        Lead Architect
                     </div>
 
-                    <div className="text-center md:text-left space-y-4">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-primary text-xs font-bold uppercase tracking-widest">
-                            Lead Architect
-                        </div>
-                        <h1 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tight leading-tight">{developerDetails.name}</h1>
-                        <p className="text-xl text-gray-500 font-medium">{developerDetails.role}</p>
+                    <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tight leading-none uppercase">
+                        {developerDetails.name}
+                    </h1>
 
-                        <p className="max-w-xl text-gray-600 leading-relaxed pt-2">
-                            I create clean, modern websites using high-performance technologies and enjoy building impactful AI healthcare solutions.
-                        </p>
+                    <p className="text-xl md:text-2xl text-gray-500 font-medium font-mono tracking-wider">
+                        {developerDetails.role}
+                    </p>
 
-                        <div className="flex flex-wrap justify-center md:justify-start gap-3 pt-6">
-                            <a href={developerDetails.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white rounded-xl hover:bg-black transition-all shadow-lg shadow-gray-200">
-                                <GitHubIcon />
-                                <span className="text-sm font-bold">GitHub</span>
-                            </a>
-                            <a href={developerDetails.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-[#0077b5] text-white rounded-xl hover:opacity-90 transition-all shadow-lg shadow-blue-100">
-                                <LinkedInIcon />
-                                <span className="text-sm font-bold">LinkedIn</span>
-                            </a>
-                            <a href={`mailto:${developerDetails.email}`} className="flex items-center gap-2 px-5 py-2.5 bg-[#EA4335] text-white rounded-xl hover:opacity-90 transition-all shadow-lg shadow-red-100">
-                                <GmailIcon />
-                                <span className="text-sm font-bold">Gmail</span>
-                            </a>
-                        </div>
+                    <p className="text-lg md:text-xl text-gray-600 leading-relaxed italic mx-auto">
+                        "I create clean, modern websites using high-performance technologies and enjoy building impactful AI healthcare solutions."
+                    </p>
+
+                    <div className="flex flex-wrap justify-center gap-4 pt-8">
+                        <a href={developerDetails.github} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-8 py-3.5 bg-gray-900 text-white rounded-2xl hover:bg-black transition-all shadow-xl shadow-gray-200 hover:-translate-y-1">
+                            <GitHubIcon />
+                            <span className="font-bold">GitHub</span>
+                        </a>
+                        <a href={developerDetails.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-8 py-3.5 bg-[#0077b5] text-white rounded-2xl hover:opacity-90 transition-all shadow-xl shadow-blue-100 hover:-translate-y-1">
+                            <LinkedInIcon />
+                            <span className="font-bold">LinkedIn</span>
+                        </a>
+                        <a href={`mailto:${developerDetails.email}`} className="flex items-center gap-3 px-8 py-3.5 bg-[#EA4335] text-white rounded-2xl hover:opacity-90 transition-all shadow-xl shadow-red-100 hover:-translate-y-1">
+                            <GmailIcon />
+                            <span className="font-bold">Gmail</span>
+                        </a>
                     </div>
                 </div>
             </div>
