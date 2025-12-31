@@ -6,7 +6,8 @@ This project is configured for a MERN Monorepo deployment on **Vercel**.
 Since you are currently using a local MongoDB, you need to migrate to a cloud database:
 1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 2. Create a Cluster and get your **Connection String**.
-3. Allow access from `0.0.0.0/0` (anywhere) in the Network Access settings.
+3. **CRITICAL**: Go to "Network Access" in Atlas and click **"Add IP Address"**. Choose **"Allow Access From Anywhere" (0.0.0.0/0)**. Vercel will not work without this!
+4. Create a Database User and remember the password.
 
 ## 2. Python AI Service (Optional but Recommended)
 The AI prediction part runs on a Python service. Vercel does not support long-running Python processes well.

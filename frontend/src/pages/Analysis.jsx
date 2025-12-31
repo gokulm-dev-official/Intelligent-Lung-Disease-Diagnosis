@@ -38,7 +38,8 @@ export default function Analysis() {
             }
         } catch (err) {
             console.error(err);
-            setError(err.response?.data?.message || 'Analysis failed');
+            const errorData = err.response?.data || { message: err.message };
+            setError(errorData);
             toast.error('Failed to analyze image');
         } finally {
             setLoading(false);

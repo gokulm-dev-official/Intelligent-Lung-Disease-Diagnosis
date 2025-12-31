@@ -14,10 +14,13 @@ exports.analyzeImage = async (req, res) => {
         }
 
         const imagePath = req.file.path;
-        console.log("Analyzing image at:", imagePath);
+        const filename = req.file.filename;
+        console.log(`Image received. Path: ${imagePath}, Filename: ${filename}`);
 
         // Run prediction
+        console.log("Starting prediction...");
         const prediction = await predictImage(imagePath);
+        console.log("Prediction completed:", prediction);
 
         // We don't save to DB yet, user might want to confirm or discard. 
         // Or we can save as temporary.

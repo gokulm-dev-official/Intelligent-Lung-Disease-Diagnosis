@@ -6,13 +6,32 @@ const connectDB = require('./config/db');
 
 dotenv.config();
 
-// Connect to Database
-connectDB();
-
 const app = express();
 
 // Middleware
 app.use(cors());
+
+// Middleware to ensure DB is connected
+let isConnected = false;
+app.use(async (req, res, next) => {
+    if (!isConnected) {
+        try {
+            await connectDB();
+            isConnected = true;
+            next();
+        } catch (err) {
+            console.error("DB Connection Middleware Error:", err);
+            return res.status(500).json({
+                success: false,
+                message: "Database connection failed. Please check your MONGO_URI and IP whitelist.",
+                error: err.message
+            });
+        }
+    } else {
+        next();
+    }
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

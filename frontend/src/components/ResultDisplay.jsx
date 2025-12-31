@@ -126,7 +126,12 @@ export default function ResultDisplay({ result, loading, error, imageUrl }) {
             <div className="card h-full flex flex-col items-center justify-center p-12 text-center text-red-500">
                 <ExclamationTriangleIcon className="w-16 h-16 mb-4" />
                 <h3 className="text-lg font-bold">Analysis Failed</h3>
-                <p className="text-sm mt-2">{error}</p>
+                <p className="text-sm mt-2">{error.message || error}</p>
+                {error.details && (
+                    <div className="mt-4 p-2 bg-black/5 rounded text-[10px] font-mono whitespace-pre-wrap text-left w-full overflow-auto max-h-32">
+                        {error.details}
+                    </div>
+                )}
             </div>
         );
     }
