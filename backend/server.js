@@ -15,24 +15,23 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+const mongoose = require('mongoose');
+
 // Middleware to ensure DB is connected
-let isConnected = false;
 app.use(async (req, res, next) => {
-    if (!isConnected) {
-        try {
+    try {
+        if (mongoose.connection.readyState !== 1) {
+            console.log("DB not ready, connecting...");
             await connectDB();
-            isConnected = true;
-            next();
-        } catch (err) {
-            console.error("DB Connection Middleware Error:", err);
-            return res.status(500).json({
-                success: false,
-                message: "Database connection failed. Please check your MONGO_URI and IP whitelist.",
-                error: err.message
-            });
         }
-    } else {
         next();
+    } catch (err) {
+        console.error("DB Connection Middleware Error:", err);
+        return res.status(500).json({
+            success: false,
+            message: "Database connection failed. Please check your MONGO_URI and IP whitelist in Atlas.",
+            error: err.message
+        });
     }
 });
 

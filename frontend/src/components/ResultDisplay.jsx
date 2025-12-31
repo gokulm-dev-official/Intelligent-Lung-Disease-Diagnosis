@@ -136,13 +136,14 @@ export default function ResultDisplay({ result, loading, error, imageUrl }) {
         );
     }
 
-    if (!result) {
+    if (!loading && !error && !result) {
         return (
-            <div className="card h-full flex flex-col items-center justify-center p-12 text-center text-gray-400">
+            <div className="card h-full flex flex-col items-center justify-center p-12 text-center text-gray-400 min-h-[400px]">
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                    <CheckCircleIcon className="w-8 h-8" />
+                    <CheckCircleIcon className="w-8 h-8 opacity-20" />
                 </div>
-                <p>Upload an image to see analysis results</p>
+                <p className="font-medium">No active analysis</p>
+                <p className="text-xs mt-1">Upload an image to begin diagnostic process</p>
             </div>
         );
     }
@@ -181,7 +182,8 @@ export default function ResultDisplay({ result, loading, error, imageUrl }) {
                 <div className="space-y-4">
                     <h4 className="font-bold text-gray-900 border-b border-gray-100 pb-2">Detailed Probability</h4>
                     {sortedScores.map(([disease, score]) => {
-                        const percentage = (score * 100).toFixed(1);
+                        const scoreNum = Number(score) || 0;
+                        const percentage = (scoreNum * 100).toFixed(1);
                         return (
                             <div key={disease} className="space-y-1">
                                 <div className="flex justify-between text-sm">

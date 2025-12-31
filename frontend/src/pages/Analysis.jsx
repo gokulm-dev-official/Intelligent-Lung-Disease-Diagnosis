@@ -55,7 +55,9 @@ export default function Analysis() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full">
                 <div className="order-2 lg:order-1">
-                    <ResultDisplay result={result} loading={loading} error={error} />
+                    <div className="min-h-[400px]">
+                        <ResultDisplay result={result} loading={loading} error={error} />
+                    </div>
                 </div>
                 <div className="order-1 lg:order-2 space-y-6">
                     <div className="card">

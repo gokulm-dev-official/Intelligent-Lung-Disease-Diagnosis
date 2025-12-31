@@ -44,18 +44,23 @@ export default function PatientForm({ onClose, onSuccess, editData }) {
         e.preventDefault();
         setLoading(true);
         try {
+            const payload = {
+                ...formData,
+                age: Number(formData.age)
+            };
             if (editData) {
-                await api.put(`/patients/${editData._id}`, formData);
+                await api.put(`/patients/${editData._id}`, payload);
                 toast.success('Patient updated successfully');
             } else {
-                await api.post('/patients', formData);
+                await api.post('/patients', payload);
                 toast.success('Patient registered successfully');
             }
             if (onSuccess) onSuccess();
             onClose();
         } catch (error) {
-            console.error(error);
-            toast.error(error.response?.data?.message || 'Action failed');
+            console.error("Form Submission Error:", error);
+            const msg = error.response?.data?.message || error.message || 'Action failed';
+            toast.error(`Error: ${msg}`);
         } finally {
             setLoading(false);
         }
